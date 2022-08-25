@@ -284,7 +284,11 @@ class ANADataAcquisition:
     def download(self):
 
         var = os.path.join(self.plugdir,"data", "Down_ANA.exe")
-        os.startfile(var)
+        if sys.platform == "win32":
+          os.startfile(filename)
+        else:
+          opener = "open" if sys.platform == "darwin" else "xdg-open"
+          subprocess.call([opener, filename])
         print(var)
 
     #--------------------------------------------------------------------------
